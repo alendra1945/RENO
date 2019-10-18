@@ -1,53 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const neode = require('../OGM/connector');
-const bcrypt=require('bcrypt')
+const neode = require('../../../lib/models/connector');
+const bcrypt=require('bcryptjs')
 const jwt=require('jsonwebtoken')
 const label="User"
-
-/**
- * @swagger
- * /user/signUp:
- *   post:
- *     tags:
- *      - User
- *     summary: Create User
- *     description: 
- *     consumes:
- *      - application/json
- *     produces:
- *      - application/json
- *     parameters:
- *      - in: body
- *        name: body
- *        description:  Properties need to define.
- *        required: true
- *        schema:
- *           type: object
- *           required:
- *             - username
- *             - password
- *           properties:
- *             username:
- *               type: string
- *             firstName:
- *               type: string
- *             lastName:
- *               type: string
- *             email:
- *               type: string
- *             password:
- *               type: string
- *     responses:
- *       201:
- *         description: Success
- *       202:
- *         description: No Action Performed
- *       400:
- *         description: Error
- *       500:
- *         description: Internal Server Error
- */
 
 router.post('/signUp', (req, res, next) => {
     neode.first('User',"username",req.body.username).then(result=>{
@@ -87,45 +43,6 @@ router.post('/signUp', (req, res, next) => {
     })
     
 });
-
-
-/**
- * @swagger
- * /user/login:
- *   post:
- *     tags:
- *      - User
- *     summary: Create User
- *     description: 
- *     consumes:
- *      - application/json
- *     produces:
- *      - application/json
- *     parameters:
- *      - in: body
- *        name: body
- *        description:  Properties need to define.
- *        required: true
- *        schema:
- *           type: object
- *           required:
- *             - username
- *             - password
- *           properties:
- *             username:
- *               type: string
- *             password:
- *               type: string
- *     responses:
- *       200:
- *         description: Success
- *       202:
- *         description: No Action Performed
- *       400:
- *         description: Error
- *       500:
- *         description: Internal Server Error
- */
 
 router.post('/login', (req, res, next) => {
     neode.first('User',"username",req.body.username).then(user=>{

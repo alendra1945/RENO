@@ -1,10 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 const createError = require('http-errors');
-const path = require('path');
 const bodyParser = require('body-parser');
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
 
 const app = express();
 app.use(logger('dev'));
@@ -13,46 +10,18 @@ app.use(bodyParser.json({
   strict: false,
 }));
 
-// -- setup up swagger-jsdoc --
-const swaggerDefinition = {
-  info: {
-    title: 'API',
-    version: '0.0.1',
-    description: 'Development',
-  },
-  host: 'localhost:8080',
-  basePath: '/',
-  securityDefinitions:{
-    ApiKeyAuth:{
-      type:"apiKey",
-      name:"Authorization",
-      in:"header"
-    }
-  }
-};
+app.use((req,res,next)=>{
+  res.header('Access-Control-Allow-Origin','*')
+  res.header('Acces-Control-Allow-Headers',"Origin,Content-Type,X-Requested-With,Accept,Authorization")
+  next()
+})
 
-// -- routes for docs and generated swagger spec --
-const swaggerOptions = {
-  swaggerOptions: {
-    url: '/docs/swagger.json'
-  }
-}
 
-const options = {
-  swaggerDefinition,
-  apis: [path.resolve(__dirname, './routes/*/*')],
-};
-const swaggerSpec = swaggerJSDoc(options);
-
-app.get('/docs/swagger.json', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.send(swaggerSpec);
-});
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(null, swaggerOptions));
+//docs api
+app.use('/api-docs',require('./api/docs/apiDocs') );
 
 //User
-app.use('/user', require('./routes/user/user'));
+app.use('/user', require('./api/routes/user/user'));
 
 
 // catch 404 and forward to error handler

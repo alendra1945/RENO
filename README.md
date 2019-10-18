@@ -1,6 +1,6 @@
-# RENS (REST with Express Neo4j and Swagger)
+# RENO (REST with Express Neo4j and OpenApi)
 
-BoilerPlate untuk membuat api dengan Express dan database neo4j serta dokumentasi dengan swagger
+BoilerPlate untuk membuat api dengan Express dan database neo4j serta dokumentasi dengan OpenApi
 
 #### Installation
 
