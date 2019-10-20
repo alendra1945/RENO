@@ -19,7 +19,7 @@ app.use((req,res,next)=>{
 
 
 //docs api
-app.use('/api-docs',require('./lib/docs/resJson') );
+app.use('/api-docs',require('./lib/docs/') );
 
 //User
 app.use('/user', require('./api/routes/user/user'));
