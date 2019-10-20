@@ -4,16 +4,16 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('renj:server');
+var app = require('./app');
+var debug = require('debug')('reno:server');
 var http = require('http');
-var config= require('../config/app')
+var settings= require('./settings')
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(config.port || '3000');
+var port = normalizePort(settings.port || '3000');
 app.set('port', port);
 
 /**

@@ -10,6 +10,7 @@ app.use(bodyParser.json({
   strict: false,
 }));
 
+//csrf settings
 app.use((req,res,next)=>{
   res.header('Access-Control-Allow-Origin','*')
   res.header('Acces-Control-Allow-Headers',"Origin,Content-Type,X-Requested-With,Accept,Authorization")
@@ -18,7 +19,7 @@ app.use((req,res,next)=>{
 
 
 //docs api
-app.use('/api-docs',require('./api/docs/apiDocs') );
+app.use('/api-docs',require('./lib/docs/resJson') );
 
 //User
 app.use('/user', require('./api/routes/user/user'));
