@@ -1,7 +1,8 @@
 apiDocs=[
   { 
     name:'User',
-    url: '/api-docs/user'
+    url: '/api-docs/user',
+    file:'user.yml'
   }
 ]
 
