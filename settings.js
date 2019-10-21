@@ -10,6 +10,18 @@ module.exports.dbSettings={
     password: "admin123"
 }
 
+
+// Header Settings
+module.exports.allowHeader=[
+                            'Origin',
+                            'Content-Type',
+                            'X-Requested-With',
+                            'Accept',
+                            'Authorization'
+                          ]
+module.exports.allowOrigin='*'
+
+
 // -- swagger settings
 module.exports.apiDocsSettings= {
     openapi: '3.0.0',

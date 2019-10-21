@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const createError = require('http-errors');
 const bodyParser = require('body-parser');
+const {allowHeader,allowOrigin}=require('./settings')
 
 const app = express();
 app.use(logger('dev'));
@@ -12,8 +13,8 @@ app.use(bodyParser.json({
 
 //csrf settings
 app.use((req,res,next)=>{
-  res.header('Access-Control-Allow-Origin','*')
-  res.header('Acces-Control-Allow-Headers',"Origin,Content-Type,X-Requested-With,Accept,Authorization")
+  res.header('Access-Control-Allow-Origin',allowOrigin)
+  res.header('Acces-Control-Allow-Headers',allowHeader.join(','))
   next()
 })
 
