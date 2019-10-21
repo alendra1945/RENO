@@ -18,6 +18,10 @@ app.use((req,res,next)=>{
 })
 
 
+//rediect to api-docs
+app.get('/',function(req,res,next){
+  res.redirect('/api-docs')
+})
 //docs api
 app.use('/api-docs',require('./lib/docs/') );
 
